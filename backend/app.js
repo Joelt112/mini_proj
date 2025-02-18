@@ -9,6 +9,7 @@ import auctionItemRouter from "./router/auctionItemRoutes.js";
 import userRouter from "./router/userRouter.js";
 import bidRouter from "./router/bidRoutes.js";
 import commissionRouter from "./router/commissionRouter.js";
+import superAdminRouter from "./router/superAdminRoutes.js"
 
 
 const app = express();
@@ -37,6 +38,7 @@ app.use("/api/v1/user",userRouter);
 app.use("/api/v1/auctionitem",auctionItemRouter);
 app.use("/api/v1/bid",bidRouter);
 app.use("/api/v1/commission", commissionRouter);
+app.use("/api/v1/superadmin",superAdminRouter);
 
 connection();
 app.use(errorMiddleware);
