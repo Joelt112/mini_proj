@@ -194,12 +194,12 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  // if (auctionItem.highestBidder) {
-  //   const highestBidder = await User.findById(auctionItem.highestBidder);
-  //   highestBidder.moneySpent -= auctionItem.currentBid;
-  //   highestBidder.auctionsWon -= 1;
-  //   highestBidder.save();
-  // }
+   if (auctionItem.highestBidder) {
+     const highestBidder = await User.findById(auctionItem.highestBidder);
+     highestBidder.moneySpent -= auctionItem.currentBid;
+     highestBidder.auctionsWon -= 1;
+     highestBidder.save();
+   }
 
   data.bids = [];
   data.commissionCalculated = false;
@@ -210,7 +210,7 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
     runValidators: true,
     useFindAndModify: false,
   });
-  // await Bid.deleteMany({ auctionItem: auctionItem._id });
+  await Bid.deleteMany({ auctionItem: auctionItem._id });
   const createdBy = await User.findByIdAndUpdate(
     req.user._id,
     { unpaidCommission: 0 },

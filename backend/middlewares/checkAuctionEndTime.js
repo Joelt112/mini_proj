@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import { catchAsyncErrors } from "./catchAsyncErrors.js";
 import ErrorHandler from "./error.js";
 import { Auction } from "../models/auctionSchema.js";
-
 export const checkAuctionEndTime = catchAsyncErrors(async (req, res, next) => {
   
+  const { id } = req.params; 
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return next(new ErrorHandler("Invalud ID format.", 400));
   }
