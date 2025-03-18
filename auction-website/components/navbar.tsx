@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, logout } from "../store/slices/userSlice";
-import { Gavel, LogIn, UserPlus, LogOut, Menu, X } from "lucide-react";
+import { Gavel, LogIn, UserPlus, LogOut, Menu, X, FileText, PlusCircle, Eye, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import HamburgerMenu from "./hamburger-menu"
+import HamburgerMenu from "./hamburger-menu";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -39,34 +39,60 @@ export default function Navbar() {
           <Link href="/how-it-works" className="text-sm font-medium hover:text-primary">How It Works</Link>
           <Link href="/about" className="text-sm font-medium hover:text-primary">About</Link>
           <Link href="/contact" className="text-sm font-medium hover:text-primary">Contact</Link>
+
+          {/* ✅ Role-Based Menu Items for Auctioneers & Super Admin */}
+          {isAuthenticated && user && (
+            <>
+              {user.role === "Auctioneer" && (
+                <>
+                  <Link href="/submit-commission" className="text-sm font-medium hover:text-primary flex items-center gap-1">
+                    <FileText className="h-4 w-4" /> Submit Commission
+                  </Link>
+                  <Link href="/create-auction" className="text-sm font-medium hover:text-primary flex items-center gap-1">
+                    <PlusCircle className="h-4 w-4" /> Create Auction
+                  </Link>
+                  <Link href="/view-my-auctions" className="text-sm font-medium hover:text-primary flex items-center gap-1">
+                    <Eye className="h-4 w-4" /> View My Auctions
+                  </Link>
+                </>
+              )}
+              {user.role === "Super Admin" && (
+                <Link href="/dashboard" className="text-sm font-medium hover:text-primary flex items-center gap-1">
+                  <LayoutDashboard className="h-4 w-4" /> Dashboard
+                </Link>
+              )}
+            </>
+          )}
         </nav>
 
         {/* Desktop Authentication Buttons */}
         <div className="hidden md:flex items-center gap-4">
           {isAuthenticated ? (
-           <>
-           <div className="flex items-center gap-2">
-             <img 
-               src={user.profileImage.url || "/default-avatar.png"} // Default avatar if user.avatar is missing
-               alt="User Avatar"
-               className="w-8 h-8 rounded-full border border-white"
-             />
-             <span className="text-sm font-medium">{user.userName}</span>
-           </div>
-         
-           <Button className="text-white hover:bg-white/10 flex items-center gap-2" onClick={handleLogout}>
-             <LogOut className="h-4 w-4" />
-             Logout
-           </Button>
-         </>
+            <>
+              <div className="flex items-center gap-2">
+                <img 
+                  src={user.profileImage.url || "/default-avatar.png"}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full border border-white"
+                />
+                <span className="text-sm font-medium">{user.userName}</span>
+              </div>
+
+              <Button className="text-white hover:bg-white/10 flex items-center gap-2" onClick={handleLogout}>
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
+            </>
           ) : (
             <>
-              <Button variant="ghost" className="text-white hover:bg-white/10" asChild>
+              {/* ✅ Restored Original Login & Register Button UI */}
+              <Button variant="ghost" className="text-white hover:bg-white/10 flex items-center gap-2" asChild>
                 <Link href="/login">
                   <LogIn className="h-4 w-4" />
                   Login
                 </Link>
               </Button>
+
               <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2" asChild>
                 <Link href="/register">
                   <UserPlus className="h-4 w-4" />
@@ -94,9 +120,24 @@ export default function Navbar() {
           <Link href="/about" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>About</Link>
           <Link href="/contact" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
 
+          {isAuthenticated && user && (
+            <>
+              {user.role === "Auctioneer" && (
+                <>
+                  <Link href="/submit-commission" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>Submit Commission</Link>
+                  <Link href="/create-auction" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>Create Auction</Link>
+                  <Link href="/view-my-auctions" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>View My Auctions</Link>
+                </>
+              )}
+              {user.role === "Super Admin" && (
+                <Link href="/dashboard" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
+              )}
+            </>
+          )}
+
           {isAuthenticated ? (
             <>
-              <span className="py-2 text-center">{user.name}</span>
+              <span className="py-2 text-center">{user.userName}</span>
               <button className="py-3 w-full text-center hover:bg-red-500 hover:text-white" onClick={handleLogout}>
                 Logout
               </button>

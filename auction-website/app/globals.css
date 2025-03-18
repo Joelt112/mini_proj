@@ -165,15 +165,15 @@
   .card-content-mobile {
     padding: 0.75rem;
   }
-  
+
   .card-title-mobile {
     font-size: 0.875rem;
   }
-  
+
   .card-price-mobile {
     font-size: 0.875rem;
   }
-  
+
   .card-time-mobile {
     font-size: 0.75rem;
   }
@@ -184,10 +184,51 @@
   .slide-button:active .slide-in-text {
     transform: translateY(-100%);
   }
-  
+
   .slide-button:active .slide-in-text-hover {
     transform: translateY(0);
   }
+}
+
+/* New animations for How It Works section */
+@keyframes progress-bar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress-bar {
+  animation: progress-bar 3s linear forwards;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-6 {
+  animation-delay: 0.6s;
 }
 
 /* Slide button animation */
@@ -222,7 +263,7 @@
   .touch-slide-button:active .default-text {
     transform: translateY(-100%);
   }
-  
+
   .touch-slide-button:active .hover-text {
     transform: translateY(0);
   }
@@ -258,19 +299,19 @@
   .auction-card {
     min-height: 100%;
   }
-  
+
   .auction-image {
     height: 160px;
   }
-  
+
   .auction-title {
     font-size: 0.875rem;
   }
-  
+
   .auction-price {
     font-size: 0.875rem;
   }
-  
+
   .auction-time {
     font-size: 0.75rem;
   }
@@ -282,7 +323,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .grid-gap-small {
     gap: 0.75rem;
   }

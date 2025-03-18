@@ -79,15 +79,17 @@ export default function Leaderboard() {
                   </div>
                   <div className="col-span-5">
                     <div className="flex items-center gap-3">
-                      <div className="relative h-10 w-10 overflow-hidden rounded-full bg-white/10">
-                        <Image
-                          src={bidder.profileImage.url || "/placeholder.svg"}
-                          alt={bidder.userName}
-                          fill
-                          className="object-cover"
-                          sizes="40px"
-                        />
-                      </div>
+  <div className="relative h-10 w-10 overflow-hidden rounded-full bg-white/10">
+  <Image
+    src={bidder.profileImage?.url || "/default-avatar.png"} // ✅ Fix: Fallback image
+    alt={bidder.userName}
+    fill
+    className="object-cover"
+    sizes="40px"
+    unoptimized // ✅ Fix for external images
+  />
+</div>
+
                       <div>
                         <Link
                           href={`/profile/${bidder._id}`}
