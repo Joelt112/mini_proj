@@ -140,7 +140,7 @@ export default function LoginPage() {
       </div>
 
       <footer className="py-4 text-center text-sm text-gray-500">
-        <p>&copy; {new Date().getFullYear()} BidMaster. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Bidout. All rights reserved.</p>
       </footer>
     </div>
   );

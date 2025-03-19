@@ -116,7 +116,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden flex flex-col items-center bg-black text-white border-t border-white/10">
           <Link href="/categories" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>Categories</Link>
-          <Link href="/how-it-works" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>How It Works</Link>
+          <Link href="/how-it-works-info" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>How It Works</Link>
           <Link href="/about" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>About</Link>
           <Link href="/contact" className="w-full py-3 text-center hover:bg-white/10" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
 

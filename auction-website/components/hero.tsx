@@ -36,7 +36,7 @@ export default function Hero() {
             <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
               <Link href="/auctions">Browse Auctions</Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+            <Button size="lg" variant="outline" className="border-red-500 border-spacing-20 border-4 border-double text-black hover:bg-white/10 hover:text-white" asChild>
               <Link href="/how-it-works">How It Works</Link>
             </Button>
           </div>
@@ -46,7 +46,7 @@ export default function Hero() {
       {/* Transition element - connects Hero to Admin Dashboard */}
       <div className="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none overflow-hidden">
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
 
         {/* Decorative elements that visually connect the sections */}
         <div className="absolute bottom-0 left-1/4 w-1 h-16 bg-primary/20 rounded-t-full transform translate-y-1/2"></div>
