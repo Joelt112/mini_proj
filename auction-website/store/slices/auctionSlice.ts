@@ -10,7 +10,8 @@ interface AuctionItem {
   category: string;
   currentBid: number;
   endTime: string;
-  
+  description : string;
+ 
 }
 
 interface AuctionState {
@@ -104,6 +105,7 @@ const auctionSlice = createSlice({
   },
 });
 
+// ✅ Get All Auction Items
 export const getAllAuctionItems = () => async (dispatch: AppDispatch) => {
   dispatch(auctionSlice.actions.getAllAuctionItemRequest());
   try {
@@ -120,6 +122,7 @@ export const getAllAuctionItems = () => async (dispatch: AppDispatch) => {
   }
 };
 
+// ✅ Get My Auction Items
 export const getMyAuctionItems = () => async (dispatch: AppDispatch) => {
   dispatch(auctionSlice.actions.getMyAuctionsRequest());
   try {
@@ -134,38 +137,75 @@ export const getMyAuctionItems = () => async (dispatch: AppDispatch) => {
   }
 };
 
-export const getAuctionDetail = (id: string) => async (dispatch: AppDispatch) => {
-  dispatch(auctionSlice.actions.getAuctionDetailRequest());
-  try {
-    const response = await axios.get(
-      `http://localhost:5000/api/v1/auctionitem/auction/${id}`,
-      { withCredentials: true }
-    );
-    dispatch(auctionSlice.actions.getAuctionDetailSuccess(response.data));
-  } catch (error) {
-    dispatch(auctionSlice.actions.getAuctionDetailFailed());
-    console.error(error);
-  }
-};
+// ✅ Get Auction Detail
+export const getAuctionDetail =
+  (id: string) => async (dispatch: AppDispatch) => {
+    dispatch(auctionSlice.actions.getAuctionDetailRequest());
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/auctionitem/auction/${id}`,
+        { withCredentials: true }
+      );
+      dispatch(auctionSlice.actions.getAuctionDetailSuccess(response.data));
+    } catch (error) {
+      dispatch(auctionSlice.actions.getAuctionDetailFailed());
+      console.error(error);
+    }
+  };
 
-export const createAuction = (data: FormData) => async (dispatch: AppDispatch) => {
-  dispatch(auctionSlice.actions.createAuctionRequest());
-  try {
-    const response = await axios.post(
-      "http://localhost:5000/api/v1/auctionitem/create",
-      data,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
-    dispatch(auctionSlice.actions.createAuctionSuccess());
-    toast.success(response.data.message);
-    dispatch(getAllAuctionItems());
-  } catch (error: any) {
-    dispatch(auctionSlice.actions.createAuctionFailed());
-    toast.error(error.response?.data?.message || "An error occurred");
-  }
-};
+// ✅ Create Auction
+export const createAuction =
+  (data: FormData) => async (dispatch: AppDispatch) => {
+    dispatch(auctionSlice.actions.createAuctionRequest());
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/auctionitem/create",
+        data,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      dispatch(auctionSlice.actions.createAuctionSuccess());
+      toast.success(response.data.message);
+      dispatch(getAllAuctionItems());
+    } catch (error: any) {
+      dispatch(auctionSlice.actions.createAuctionFailed());
+      toast.error(error.response?.data?.message || "An error occurred");
+    }
+  };
+
+  export const deleteAuction =
+  (id: string) => async (dispatch: AppDispatch) => {
+    dispatch(auctionSlice.actions.deleteAuctionItemRequest());
+    try {
+      const response = await axios.delete<{ message: string }>(
+        `http://localhost:5000/api/v1/auctionitem/delete/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      dispatch(auctionSlice.actions.deleteAuctionItemSuccess());
+      toast.success(response.data.message);
+
+      // Refresh auction items
+      dispatch(getMyAuctionItems());
+      dispatch(getAllAuctionItems());
+
+      dispatch(auctionSlice.actions.resetSlice());
+    } catch (error: any) {
+      dispatch(auctionSlice.actions.deleteAuctionItemFailed());
+
+      const errorMessage =
+        error?.response?.data?.message || error?.message || "An error occurred";
+
+      toast.error(errorMessage);
+      console.error("Auction deletion error:", errorMessage);
+
+      dispatch(auctionSlice.actions.resetSlice());
+    }
+  };
+
 
 export default auctionSlice.reducer;

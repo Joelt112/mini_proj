@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 80% 50%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Mobile menu button enhancements */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Ensure buttons are large enough on mobile */
+@media (max-width: 640px) {
+  .mobile-friendly-button {
+    min-height: 3rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+/* Hamburger menu animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.hamburger-line {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Prevent scrolling when menu is open */
+.overflow-hidden {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Slide-in button animation */
+.slide-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-in-text {
+  display: inline-block;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.slide-in-text-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.slide-button:hover .slide-in-text {
+  transform: translateY(-100%);
+}
+
+.slide-button:hover .slide-in-text-hover {
+  transform: translateY(0);
+}
+
+/* Add extra small breakpoint for better mobile support */
+@media (min-width: 480px) {
+  .xs\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Ensure card content doesn't overflow on small screens */
+@media (max-width: 479px) {
+  .card-content-mobile {
+    padding: 0.75rem;
+  }
+
+  .card-title-mobile {
+    font-size: 0.875rem;
+  }
+
+  .card-price-mobile {
+    font-size: 0.875rem;
+  }
+
+  .card-time-mobile {
+    font-size: 0.75rem;
+  }
+}
+
+/* Touch device support for hover animations */
+@media (hover: none) {
+  .slide-button:active .slide-in-text {
+    transform: translateY(-100%);
+  }
+
+  .slide-button:active .slide-in-text-hover {
+    transform: translateY(0);
+  }
+}
+
+/* New animations for How It Works section */
+@keyframes progress-bar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress-bar {
+  animation: progress-bar 3s linear forwards;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-6 {
+  animation-delay: 0.6s;
+}
+
+/* Slide button animation */
+@keyframes slideOutUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.slide-out-up {
+  animation: slideOutUp 0.3s forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s forwards;
+}
+
+/* Touch device support */
+@media (hover: none) {
+  .touch-slide-button:active .default-text {
+    transform: translateY(-100%);
+  }
+
+  .touch-slide-button:active .hover-text {
+    transform: translateY(0);
+  }
+}
+
+/* Add these styles to the end of your globals.css file */
+
+/* Slide animation for bid buttons */
+.slide-bid-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-bid-text {
+  transition: transform 0.3s ease;
+}
+
+.slide-bid-hover-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+/* Extra small screen adjustments */
+@media (max-width: 479px) {
+  .auction-card {
+    min-height: 100%;
+  }
+
+  .auction-image {
+    height: 160px;
+  }
+
+  .auction-title {
+    font-size: 0.875rem;
+  }
+
+  .auction-price {
+    font-size: 0.875rem;
+  }
+
+  .auction-time {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ensure proper spacing on small screens */
+@media (max-width: 639px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .grid-gap-small {
+    gap: 0.75rem;
+  }
+}
+

@@ -32,7 +32,7 @@ export default function Leaderboard() {
           <div className="mt-4 md:mt-0">
             <Button
               variant="outline"
-              className="border-2 border-primary text-white hover:bg-primary hover:text-white transition-all duration-300 px-4 sm:px-6 py-2 sm:py-6 h-auto text-base sm:text-lg font-medium rounded-full group flex items-center"
+              className="border-2 border-primary text-black hover:bg-primary hover:text-white transition-all duration-300 px-4 sm:px-6 py-2 sm:py-6 h-auto text-base sm:text-lg font-medium rounded-full group flex items-center"
               asChild
             >
               <Link href="/leaderboard">

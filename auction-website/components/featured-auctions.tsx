@@ -160,7 +160,7 @@ export default function FeaturedAuctions() {
                           </>
                         }
                         className="w-full bg-primary text-white"
-                        onClick={() => (window.location.href = `/auction/${auctionId}`)}
+                        onClick={() => (window.location.href = `/login`)}
                       >
                         <span className="sr-only">{auction.category}</span>
                       </HoverButton>
