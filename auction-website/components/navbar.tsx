@@ -193,6 +193,7 @@ export default function Navbar() {
           ) : isAuthenticated ? (
             <>
               <div className="flex items-center gap-2">
+                <Link  href="/profile">
                 <div className="w-8 h-8 rounded-full border border-white overflow-hidden">
                   <img
                     src={user?.profileImage?.url || "/placeholder.svg?height=32&width=32"}
@@ -204,6 +205,7 @@ export default function Navbar() {
                     }}
                   />
                 </div>
+                </Link>
                 <span className="text-sm font-medium">{user?.userName}</span>
               </div>
 

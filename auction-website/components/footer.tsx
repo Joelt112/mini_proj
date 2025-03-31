@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
               <Gavel className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">BidMaster</span>
+              <span className="text-xl font-bold">Bidout</span>
             </Link>
             <p className="mt-4 text-sm text-gray-400">
               The premier online auction platform for unique and valuable items.
@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} BidMaster. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Bidout. All rights reserved.</p>
         </div>
       </div>
     </footer>

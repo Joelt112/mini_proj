@@ -46,7 +46,7 @@ export default function LoginPage() {
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 mb-4">
               <Gavel className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">BidMaster</span>
+              <span className="text-2xl font-bold">Bidout</span>
             </Link>
             <h1 className="text-3xl font-bold">Welcome Back</h1>
             <p className="text-gray-400 mt-2">Sign in to your account to continue</p>
